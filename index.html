@@ -57,7 +57,7 @@
         <script type="module">
             import SelectSearch from './select-search.js';
             
-            let select_search = new SelectSearch("#test", {
+            window.select_search = new SelectSearch("#test", {
                 render(element){
                     return "<b>" + element.getAttribute("data-icon") + "</b> " + element.textContent
                 },

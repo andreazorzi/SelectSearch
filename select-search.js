@@ -120,9 +120,7 @@ export default class SelectSearch{
             if(el.matches('.select-search-item')){
                 let item = el;
                 
-                this.#setValue(item.getAttribute("data-value"));
-                this.#updatePlaceholder();
-                this.#setQuery("");
+                this.setValue(item.getAttribute("data-value"));
                 this.close();
                 
                 this.#options.onSelect(item, item.getAttribute("data-value"), item.innerHTML.trim());
@@ -172,8 +170,10 @@ export default class SelectSearch{
         return this.#container.querySelector(".select-search-placeholder").innerHTML = this.#getOption(this.getValue()).html;
     }
     
-    #setValue(value){
-        return this.#element.value = value;
+    setValue(value){
+        this.#element.value = value;
+        this.#updatePlaceholder();
+        this.#setQuery("");
     }
     
     getValue(){
@@ -190,5 +190,16 @@ export default class SelectSearch{
     
     close(){
         this.#container.querySelector(".select-search-modal").style.display = "none";
+    }
+    
+    updateOptionsList(html, value = null){
+        this.#element.innerHTML = html;
+        this.#filter();
+        
+        if(value == null){
+            value = this.#container.querySelector(".select-search-list .select-search-item").getAttribute("data-value");
+        }
+        
+        this.setValue(value);
     }
 }
