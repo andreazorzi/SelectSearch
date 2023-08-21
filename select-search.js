@@ -143,7 +143,7 @@ export default class SelectSearch{
                 if (Object.hasOwnProperty.call(this.#list, key)) {
                     const element = this.#list[key];
                     
-                    if(element.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
+                    if(element.toLowerCase().replace(/(<([^>]+)>)/gi, "").includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
                         this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `
                             <div class="select-search-item ${this.#options.custom_class.list_item}" data-value="${key}" ${key == this.getValue() ? "selected" : ""}>
                                 ${element}
