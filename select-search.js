@@ -5,7 +5,7 @@
  * Author: Andrea Zorzi <info@zorziandrea.com>
  * License: MIT
  * 
- * Version: 1.0.0
+ * Version: 1.0.1
  */
 
 import default_lang from "./locale/it.js";
