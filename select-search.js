@@ -61,7 +61,7 @@ export default class SelectSearch{
         
         // Add search list
         this.#container.insertAdjacentHTML("beforeend", this.#getModal());
-        this.#container.querySelector(".select-search-modal").style.width = this.#container.querySelector(".select-search-placeholder").offsetWidth+"px";
+        this.#updateModalWidth();
         
         // Add event listeners
         this.#container.querySelector(".select-search-placeholder").addEventListener("click", this.open.bind(this));
@@ -89,6 +89,10 @@ export default class SelectSearch{
                 <div class="select-search-list"></div>
             </div>
         `;
+    }
+    
+    #updateModalWidth(){
+        this.#container.querySelector(".select-search-modal").style.width = this.#container.querySelector(".select-search-placeholder").offsetWidth+"px";
     }
     
     #checkOutsideClick(e){
@@ -174,6 +178,7 @@ export default class SelectSearch{
     
     open(){
         this.#container.querySelector(".select-search-modal").style.display = "block";
+        this.#updateModalWidth();
         this.#container.querySelector(".select-search-input").focus();
         
         this.#filter();
