@@ -56,9 +56,6 @@ export default class SelectSearch{
         // Hide element
         this.#element.style.display = "none";
         
-        // Save json list
-        this.#saveJsonList();
-        
         // Add search list
         this.#container.insertAdjacentHTML("beforeend", this.#getModal());
         this.#updateModalWidth();
@@ -73,17 +70,22 @@ export default class SelectSearch{
         document.addEventListener("click", this.#checkItemClick.bind(this), false);
     }
     
-    #saveJsonList(){
-        let options = this.#element.querySelectorAll("option");
-        
-        for(let option of options){
-            this.#list[option.value] = this.#options.render(option);
-        }
+    #getOptionList(){
+        return this.#element.querySelectorAll("option");
+    }
+    
+    #getOption(key){
+        let option = this.#element.querySelector(`option[value="${key}"]`);
+        return {
+            value: option.value,
+            html: this.#options.render(option),
+            text: this.#options.render(option).replace(/(<([^>]+)>)/gi, "")
+        };
     }
     
     #getModal(){
         return `
-            <div type="text" class="select-search-placeholder ${this.#options.custom_class.placeholder}">${this.#list[this.getValue()]}</div>
+            <div type="text" class="select-search-placeholder ${this.#options.custom_class.placeholder}">${this.#getOption(this.getValue()).html}</div>
             <div class="select-search-modal" style="display: none;">
                 <input type="text" class="select-search-input ${this.#options.custom_class.search_input}" placeholder="${this.#options.lang.search}...">
                 <div class="select-search-list"></div>
@@ -139,22 +141,20 @@ export default class SelectSearch{
         let counter = 0;
         
         if(query.length >= this.#options.min_length){
-            for (const key in this.#list) {
-                if (Object.hasOwnProperty.call(this.#list, key)) {
-                    if(key == ""){
-                        continue;
-                    }
-                    
-                    const element = this.#list[key];
-                    
-                    if(element.toLowerCase().replace(/(<([^>]+)>)/gi, "").includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
-                        this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `
-                            <div class="select-search-item ${this.#options.custom_class.list_item}" data-value="${key}" ${key == this.getValue() ? "selected" : ""}>
-                                ${element}
-                            </div>
-                        `);
-                        counter++;
-                    }
+            for(let option of this.#getOptionList()){
+                let item = this.#getOption(option.value);
+                
+                if(item.value == ""){
+                    continue;
+                }
+                
+                if(item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
+                    this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `
+                        <div class="select-search-item ${this.#options.custom_class.list_item}" data-value="${item.value}" ${item.value == this.getValue() ? "selected" : ""}>
+                            ${item.html}
+                        </div>
+                    `);
+                    counter++;
                 }
             }
         }
@@ -169,7 +169,7 @@ export default class SelectSearch{
     }
     
     #updatePlaceholder(){
-        return this.#container.querySelector(".select-search-placeholder").innerHTML = this.#list[this.getValue()];
+        return this.#container.querySelector(".select-search-placeholder").innerHTML = this.#getOption(this.getValue()).html;
     }
     
     #setValue(value){
