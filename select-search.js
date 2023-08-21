@@ -65,9 +65,9 @@ export default class SelectSearch{
         
         this.#container.querySelector(".select-search-input").addEventListener("keyup", this.#filter.bind(this));
         
-        document.addEventListener("click", this.#checkOutsideClick.bind(this), false);
+        this.#container.querySelector(".select-search-list").addEventListener("click", this.#checkItemClick.bind(this), false);
         
-        document.addEventListener("click", this.#checkItemClick.bind(this), false);
+        document.addEventListener("click", this.#checkOutsideClick.bind(this), false);
     }
     
     #getOptionList(){
