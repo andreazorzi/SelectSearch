@@ -26,6 +26,9 @@ export default class SelectSearch{
         },
         render: (element) => {
             return element.textContent
+        },
+        onSelect(element, value, text){
+            
         }
     }
     
@@ -115,6 +118,8 @@ export default class SelectSearch{
                 this.#updatePlaceholder();
                 this.#setQuery("");
                 this.close();
+                
+                this.#options.onSelect(item, item.getAttribute("data-value"), item.innerHTML.trim());
                 
                 break;
             }
