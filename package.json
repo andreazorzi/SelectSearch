@@ -1,0 +1,24 @@
+{
+  "name": "selectsearch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "select-search.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreazorzi/SelectSearch.git"
+  },
+  "keywords": [
+    "select",
+    "search",
+    "filter"
+  ],
+  "author": "andreazorzi <info@zorziandrea.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreazorzi/SelectSearch/issues"
+  },
+  "homepage": "https://github.com/andreazorzi/SelectSearch#readme"
+}
