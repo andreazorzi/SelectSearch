@@ -13,6 +13,13 @@
         width: 100%;
         max-width: 350px;
         padding: 3px 5px;
+                
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
     
     & .select-search-modal{
@@ -41,6 +48,13 @@
                 -webkit-transition: background-color 0.3s;
                 -moz-transition: background-color 0.3s;
                 -o-transition: background-color 0.3s;
+                
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
                 
                 &[selected]{
                     background-color: #b8e5c6;
