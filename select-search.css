@@ -12,6 +12,7 @@
     }
     
     & .select-search-modal{
+        background-color: #ffffff;
         border: 1px solid lightgrey;
         border-bottom: none;
         min-width: 350px;
