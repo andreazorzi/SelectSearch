@@ -51,6 +51,13 @@ export default class SelectSearch{
 		
 		// Add search list
 		this.#container.insertAdjacentHTML("beforeend", this.#getModal());
+		
+		// Add event listeners
+		this.#container.querySelector(".select-search-placeholder").addEventListener("click", () => {
+			this.open();
+		});
+		
+		document.addEventListener("click", this.#checkOutsideClick.bind(this), false);
 	}
 	
 	#saveJsonList(){
@@ -69,5 +76,32 @@ export default class SelectSearch{
 				<div class="select-search-list"></div>
 			</div>
 		`;
+	}
+	
+	#checkOutsideClick(e){
+		let click_outside = true;
+		
+		for (var el=e.target; el && el!=this; el=el.parentNode){
+			if(el === this.#container){
+				click_outside = false;
+			}
+			
+			if(el.tagName == "HTML"){
+				break;
+			}
+		}
+		
+		if(click_outside){
+			this.close();
+		}
+	}
+	
+	open(){
+		console.log(this.#container.querySelector(".select-search-modal"));
+		this.#container.querySelector(".select-search-modal").style.display = "block";
+	}
+	
+	close(){
+		this.#container.querySelector(".select-search-modal").style.display = "none";
 	}
 }
