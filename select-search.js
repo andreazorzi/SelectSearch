@@ -141,6 +141,10 @@ export default class SelectSearch{
         if(query.length >= this.#options.min_length){
             for (const key in this.#list) {
                 if (Object.hasOwnProperty.call(this.#list, key)) {
+                    if(key == ""){
+                        continue;
+                    }
+                    
                     const element = this.#list[key];
                     
                     if(element.toLowerCase().replace(/(<([^>]+)>)/gi, "").includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
