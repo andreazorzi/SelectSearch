@@ -58,7 +58,7 @@
             
             let select_search = new SelectSearch("#test", {
                 render(element){
-                    return element.getAttribute("data-icon") + " <b>ciao</b> " + element.textContent
+                    return "<b>" + element.getAttribute("data-icon") + "</b> " + element.textContent
                 }
             });
         </script>
