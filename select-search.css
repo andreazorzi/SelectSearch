@@ -6,17 +6,25 @@
     & textarea:focus, input:focus{
         outline: none;
     }
+        
+    & .select-search-placeholder{
+        cursor: pointer;
+    }
     
     & .select-search-modal{
         border: 1px solid lightgrey;
         border-bottom: none;
+        min-width: 350px;
         max-height: 300px;
         overflow: auto;
+        position: absolute;
+        z-index: 9999;
         
         & .select-search-input{
             width: 100%;
             border: none;
             border-bottom: 1px solid lightgrey;
+            padding: 3px 5px;
         }
         
         & .select-search-list{
