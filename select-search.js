@@ -55,7 +55,6 @@ export default class SelectSearch{
         
         // Add search list
         this.#container.insertAdjacentHTML("beforeend", this.#getModal());
-        console.log(this.#container.querySelector(".select-search-placeholder").offsetWidth);
         this.#container.querySelector(".select-search-modal").style.width = this.#container.querySelector(".select-search-placeholder").offsetWidth+"px";
         
         // Add event listeners
