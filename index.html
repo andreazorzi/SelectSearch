@@ -8,55 +8,59 @@
     </head>
     <body>
         <select id="test">
-            <option value="1">Albania</option>
-            <option value="2">Andorra</option>
-            <option value="3">Austria</option>
-            <option value="4">Belarus</option>
-            <option value="5">Belgium</option>
-            <option value="6">Bosnia and Herzegovina</option>
-            <option value="7">Bulgaria</option>
-            <option value="8">Croatia</option>
-            <option value="9">Czechia</option>
-            <option value="10">Denmark</option>
-            <option value="11">Estonia</option>
-            <option value="12">Finland</option>
-            <option value="13">France</option>
-            <option value="14">Germany</option>
-            <option value="15">Greece</option>
-            <option value="16">Hungary</option>
-            <option value="17">Iceland</option>
-            <option value="18">Ireland</option>
-            <option value="19">Italy</option>
-            <option value="20">Latvia</option>
-            <option value="21">Liechtenstein</option>
-            <option value="22">Lithuania</option>
-            <option value="23">Luxembourg</option>
-            <option value="24">Malta</option>
-            <option value="25">Moldova</option>
-            <option value="26">Monaco</option>
-            <option value="27">Montenegro</option>
-            <option value="28">Netherlands</option>
-            <option value="29">North Macedonia</option>
-            <option value="30">Norway</option>
-            <option value="31">Poland</option>
-            <option value="32">Portugal</option>
-            <option value="33">Romania</option>
-            <option value="34">Russia</option>
-            <option value="35">San Marino</option>
-            <option value="36">Serbia</option>
-            <option value="37">Slovakia</option>
-            <option value="38">Slovenia</option>
-            <option value="39">Spain</option>
-            <option value="40">Sweden</option>
-            <option value="41">Switzerland</option>
-            <option value="42">Ukraine</option>
-            <option value="43">United Kingdom</option>
+            <option value="1" data-icon="al">Albania</option>
+            <option value="2" data-icon="aa">Andorra</option>
+            <option value="3" data-icon="aa">Austria</option>
+            <option value="4" data-icon="aa">Belarus</option>
+            <option value="5" data-icon="aa">Belgium</option>
+            <option value="6" data-icon="aa">Bosnia and Herzegovina</option>
+            <option value="7" data-icon="aa">Bulgaria</option>
+            <option value="8" data-icon="aa">Croatia</option>
+            <option value="9" data-icon="aa">Czechia</option>
+            <option value="10" data-icon="aa">Denmark</option>
+            <option value="11" data-icon="aa">Estonia</option>
+            <option value="12" data-icon="aa">Finland</option>
+            <option value="13" data-icon="aa">France</option>
+            <option value="14" data-icon="aa">Germany</option>
+            <option value="15" data-icon="aa">Greece</option>
+            <option value="16" data-icon="aa">Hungary</option>
+            <option value="17" data-icon="aa">Iceland</option>
+            <option value="18" data-icon="aa">Ireland</option>
+            <option value="19" data-icon="aa">Italy</option>
+            <option value="20" data-icon="aa">Latvia</option>
+            <option value="21" data-icon="aa">Liechtenstein</option>
+            <option value="22" data-icon="aa">Lithuania</option>
+            <option value="23" data-icon="aa">Luxembourg</option>
+            <option value="24" data-icon="aa">Malta</option>
+            <option value="25" data-icon="aa">Moldova</option>
+            <option value="26" data-icon="aa">Monaco</option>
+            <option value="27" data-icon="aa">Montenegro</option>
+            <option value="28" data-icon="aa">Netherlands</option>
+            <option value="29" data-icon="aa">North Macedonia</option>
+            <option value="30" data-icon="aa">Norway</option>
+            <option value="31" data-icon="aa">Poland</option>
+            <option value="32" data-icon="aa">Portugal</option>
+            <option value="33" data-icon="aa">Romania</option>
+            <option value="34" data-icon="aa">Russia</option>
+            <option value="35" data-icon="aa">San Marino</option>
+            <option value="36" data-icon="aa">Serbia</option>
+            <option value="37" data-icon="aa">Slovakia</option>
+            <option value="38" data-icon="aa">Slovenia</option>
+            <option value="39" data-icon="aa">Spain</option>
+            <option value="40" data-icon="aa">Sweden</option>
+            <option value="41" data-icon="aa">Switzerland</option>
+            <option value="42" data-icon="aa">Ukraine</option>
+            <option value="43" data-icon="aa">United Kingdom</option>
         </select>
         
         <script type="module">
             import SelectSearch from './select-search.js';
             
-            let select_search = new SelectSearch("#test");
+            let select_search = new SelectSearch("#test", {
+                render(element){
+                    return element.getAttribute("data-icon") + " <b>ciao</b> " + element.textContent
+                }
+            });
         </script>
     </body>
 </html>

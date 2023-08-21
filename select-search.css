@@ -9,6 +9,10 @@
         
     & .select-search-placeholder{
         cursor: pointer;
+        border: 1px solid lightgrey;
+        width: 100%;
+        max-width: 350px;
+        padding: 3px 5px;
     }
     
     & .select-search-modal{

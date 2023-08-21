@@ -23,6 +23,9 @@ export default class SelectSearch{
             placeholder: "",
             search_input: "",
             list_item: ""
+        },
+        render: (element) => {
+            return element.textContent
         }
     }
     
@@ -71,13 +74,13 @@ export default class SelectSearch{
         let options = this.#element.querySelectorAll("option");
         
         for(let option of options){
-            this.#list[option.value] = option.textContent;
+            this.#list[option.value] = this.#options.render(option);
         }
     }
     
     #getModal(){
         return `
-            <input type="text" class="select-search-placeholder ${this.#options.custom_class.placeholder}" value="${this.#list[this.getValue()]}" readonly>
+            <div type="text" class="select-search-placeholder ${this.#options.custom_class.placeholder}">${this.#list[this.getValue()]}</div>
             <div class="select-search-modal" style="display: none;">
                 <input type="text" class="select-search-input ${this.#options.custom_class.search_input}" placeholder="${this.#options.lang.search}...">
                 <div class="select-search-list"></div>
@@ -133,7 +136,9 @@ export default class SelectSearch{
                     
                     if(element.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
                         this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `
-                            <div class="select-search-item ${this.#options.custom_class.list_item}" data-value="${key}" ${key == this.getValue() ? "selected" : ""}>${element}</div>
+                            <div class="select-search-item ${this.#options.custom_class.list_item}" data-value="${key}" ${key == this.getValue() ? "selected" : ""}>
+                                ${element}
+                            </div>
                         `);
                         counter++;
                     }
@@ -151,7 +156,7 @@ export default class SelectSearch{
     }
     
     #updatePlaceholder(){
-        return this.#container.querySelector(".select-search-placeholder").value = this.#list[this.getValue()];
+        return this.#container.querySelector(".select-search-placeholder").innerHTML = this.#list[this.getValue()];
     }
     
     #setValue(value){
