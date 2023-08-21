@@ -17,13 +17,13 @@ export default class SelectSearch{
     #list = {};
     #options = {
         lang: default_lang,
+        min_length: 0,
+        list_limit: -1,
         custom_class: {
             placeholder: "",
             search_input: "",
             list_item: ""
-        },
-        query_min_length: 0,
-        list_limit: -1
+        }
     }
     
     constructor(element_selector, options){
@@ -127,7 +127,7 @@ export default class SelectSearch{
         this.#container.querySelector(".select-search-list").innerHTML = "";
         let counter = 0;
         
-        if(query.length >= this.#options.query_min_length){
+        if(query.length >= this.#options.min_length){
             for (const key in this.#list) {
                 if (Object.hasOwnProperty.call(this.#list, key)) {
                     const element = this.#list[key];
