@@ -1,5 +1,5 @@
 {
-  "name": "selectsearch",
+  "name": "@andreazorzi/selectsearch",
   "version": "1.0.0",
   "description": "",
   "main": "select-search.js",
