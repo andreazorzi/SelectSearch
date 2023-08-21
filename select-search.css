@@ -1,0 +1,32 @@
+.select-search{
+    & textarea:focus, input:focus{
+        outline: none;
+    }
+    
+    & .select-search-modal{
+        border: 1px solid lightgrey;
+        border-bottom: none;
+        
+        & .select-search-input{
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid lightgrey;
+        }
+        
+        & .select-search-list{
+            & .select-search-item{
+                border-bottom: 1px solid lightgrey;
+                padding: 3px 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                -webkit-transition: background-color 0.3s;
+                -moz-transition: background-color 0.3s;
+                -o-transition: background-color 0.3s;
+                
+                &:hover{
+                    background-color: rgb(201, 247, 207);
+                }
+            }
+        }
+    }
+}

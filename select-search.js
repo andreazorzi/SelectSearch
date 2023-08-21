@@ -19,7 +19,9 @@ export default class SelectSearch{
 		lang: default_lang,
 		custom_class: {
 			placeholder: ""
-		}
+		},
+		query_min_length: 0,
+		list_limit: 10
 	}
 	
 	constructor(element_selector, options){
@@ -53,9 +55,9 @@ export default class SelectSearch{
 		this.#container.insertAdjacentHTML("beforeend", this.#getModal());
 		
 		// Add event listeners
-		this.#container.querySelector(".select-search-placeholder").addEventListener("click", () => {
-			this.open();
-		});
+		this.#container.querySelector(".select-search-placeholder").addEventListener("click", this.open.bind(this));
+		
+		this.#container.querySelector(".select-search-input").addEventListener("keyup", this.#filter.bind(this));
 		
 		document.addEventListener("click", this.#checkOutsideClick.bind(this), false);
 	}
@@ -96,9 +98,29 @@ export default class SelectSearch{
 		}
 	}
 	
+	#filter(){
+		let query = this.#container.querySelector(".select-search-input").value;
+		this.#container.querySelector(".select-search-list").innerHTML = "";
+		let counter = 0;
+		
+		if(query.length >= this.#options.query_min_length){
+			for (const key in this.#list) {
+				if (Object.hasOwnProperty.call(this.#list, key)) {
+					const element = this.#list[key];
+					
+					if(element.toLowerCase().includes(query.toLowerCase()) && counter < this.#options.list_limit){
+						this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `<div class="select-search-item" data-value="${key}">${element}</div>`);
+						counter++;
+					}
+				}
+			}
+		}
+	}
+	
 	open(){
-		console.log(this.#container.querySelector(".select-search-modal"));
 		this.#container.querySelector(".select-search-modal").style.display = "block";
+		
+		this.#filter();
 	}
 	
 	close(){
