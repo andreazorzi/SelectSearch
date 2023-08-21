@@ -1,4 +1,8 @@
 .select-search{
+    & *{
+        box-sizing: border-box;
+    }
+    
     & textarea:focus, input:focus{
         outline: none;
     }
@@ -6,6 +10,8 @@
     & .select-search-modal{
         border: 1px solid lightgrey;
         border-bottom: none;
+        max-height: 300px;
+        overflow: auto;
         
         & .select-search-input{
             width: 100%;
@@ -23,8 +29,12 @@
                 -moz-transition: background-color 0.3s;
                 -o-transition: background-color 0.3s;
                 
+                &[selected]{
+                    background-color: #f5f5f5;
+                }
+                
                 &:hover{
-                    background-color: rgb(201, 247, 207);
+                    background-color: #f5f5f5;
                 }
             }
         }
