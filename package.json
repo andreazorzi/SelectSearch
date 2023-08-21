@@ -1,7 +1,7 @@
 {
   "name": "@andreazorzi/selectsearch",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lightweight plugin to easily filter and search across a select's options.",
   "main": "select-search.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
