@@ -18,7 +18,9 @@ export default class SelectSearch{
     #options = {
         lang: default_lang,
         custom_class: {
-            placeholder: ""
+            placeholder: "",
+            search_input: "",
+            list_item: ""
         },
         query_min_length: 0,
         list_limit: -1
@@ -78,7 +80,7 @@ export default class SelectSearch{
         return `
             <input type="text" class="select-search-placeholder ${this.#options.custom_class.placeholder}" value="${this.#list[this.getValue()]}" readonly>
             <div class="select-search-modal" style="display: none;">
-                <input type="text" class="select-search-input" placeholder="${this.#options.lang.search}...">
+                <input type="text" class="select-search-input ${this.#options.custom_class.search_input}" placeholder="${this.#options.lang.search}...">
                 <div class="select-search-list"></div>
             </div>
         `;
@@ -131,7 +133,9 @@ export default class SelectSearch{
                     const element = this.#list[key];
                     
                     if(element.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
-                        this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `<div class="select-search-item" data-value="${key}" ${key == this.getValue() ? "selected" : ""}>${element}</div>`);
+                        this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `
+                            <div class="select-search-item ${this.#options.custom_class.list_item}" data-value="${key}" ${key == this.getValue() ? "selected" : ""}>${element}</div>
+                        `);
                         counter++;
                     }
                 }
