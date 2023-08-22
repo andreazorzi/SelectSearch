@@ -47,6 +47,30 @@ window.selectsearch_it = selectsearch_it;
 		placeholder: "",
 		search_input: "",
 		list_item: ""
+	},
+	render: (element) => { 
+		return element.textContent
+	},
+	onSelect(element, value, text){
+		
 	}
 }
+```
+
+## Methods
+```js
+// Update the list (html is a lis of options)
+updateOptionsList(html, value = null)
+
+// Open the modal
+open()
+
+// Close the modal
+close()
+
+// Get the current value
+getValue()
+
+// Set value
+setValue(value)
 ```
