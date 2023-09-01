@@ -72,7 +72,16 @@ export default class SelectSearch{
     }
     
     #getOptionList(){
-        return this.#element.querySelectorAll("option");
+        let options = this.#element.querySelectorAll("option");
+        
+        if(this.#isMultiple()){
+            options = new Set([
+                ...this.#element.querySelectorAll("option:checked"),
+                ...this.#element.querySelectorAll("option:not(:checked)")
+            ])
+        }
+        
+        return options;
     }
     
     #getOption(key){
