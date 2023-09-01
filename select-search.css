@@ -13,7 +13,10 @@
         width: 100%;
         max-width: 350px;
         padding: 3px 5px;
-                
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
@@ -26,7 +29,7 @@
         background-color: #ffffff;
         border: 1px solid lightgrey;
         border-bottom: none;
-        min-width: 350px;
+        /* min-width: 350px; */
         max-height: 300px;
         overflow: auto;
         position: absolute;
@@ -56,7 +59,7 @@
                 -ms-user-select: none;
                 user-select: none;
                 
-                &[selected]{
+                &.selected{
                     background-color: #b8e5c6;
                 }
                 

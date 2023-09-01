@@ -76,6 +76,15 @@ export default class SelectSearch{
     
     #getOption(key){
         let option = this.#element.querySelector(`option[value="${key}"]`);
+        
+        if(option == null){
+            return {
+                value: "---",
+                html: "---",
+                text: "---"
+            }
+        }
+        
         return {
             value: option.value,
             html: this.#options.render(option),
@@ -120,8 +129,11 @@ export default class SelectSearch{
             if(el.matches('.select-search-item')){
                 let item = el;
                 
+                if(!this.#isMultiple()){
+                    this.close();
+                }
+                
                 this.setValue(item.getAttribute("data-value"));
-                this.close();
                 
                 this.#options.onSelect(item, item.getAttribute("data-value"), item.innerHTML.trim());
                 
@@ -148,7 +160,7 @@ export default class SelectSearch{
                 
                 if(item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
                     this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `
-                        <div class="select-search-item ${this.#options.custom_class.list_item}" data-value="${item.value}" ${item.value == this.getValue() ? "selected" : ""}>
+                        <div class="select-search-item ${this.#options.custom_class.list_item} ${this.#checkSelected(item.value) ? "selected" : ""}" data-value="${item.value}">
                             ${item.html}
                         </div>
                     `);
@@ -167,17 +179,52 @@ export default class SelectSearch{
     }
     
     #updatePlaceholder(){
-        return this.#container.querySelector(".select-search-placeholder").innerHTML = this.#getOption(this.getValue()).html;
+        let value = [];
+        
+        this.#element.querySelectorAll('option:checked').forEach((option) => {
+            value.push(this.#getOption(option.value).html);
+        });
+        
+        this.#container.querySelector(".select-search-placeholder").innerHTML = value.length > 0 ? '<span style=" margin-right: 6px;">'+value.join(`,</span><span style=" margin-right: 6px;">`)+'</span>' : this.#getDefaultValue();
+    }
+    
+    #isMultiple(){
+        return this.#element.hasAttribute("multiple");
+    }
+    
+    #getDefaultValue(){
+        return this.#getOption("").html;
+    }
+    
+    #checkSelected(value){
+        return this.#element.querySelectorAll(`option[value="${value}"]:checked`).length > 0;
     }
     
     setValue(value){
-        this.#element.value = value;
+        let item = this.#container.querySelector(`.select-search-item[data-value="${value}"]`);
+        let selected = true;
+        
+        if(this.#isMultiple()){
+            selected = item.classList.toggle("selected");
+        }
+        
+        this.#element.querySelector(`option[value="${value}"]`).selected = selected;
         this.#updatePlaceholder();
         this.#setQuery("");
     }
     
     getValue(){
-        return this.#element.value;
+        let value = this.#element.value;
+        
+        if(this.#isMultiple()){
+            value = [];
+            
+            this.#element.querySelectorAll('option:checked').forEach((option) => {
+                value.push(this.#getOption(option.value).value);
+            })
+        }
+        
+        return value;
     }
     
     open(){
