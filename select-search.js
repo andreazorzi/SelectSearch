@@ -58,6 +58,7 @@ export default class SelectSearch{
         
         // Add search list
         this.#container.insertAdjacentHTML("beforeend", this.#getModal());
+        this.#updatePlaceholder();
         this.#updateModalWidth();
         
         // Add event listeners
@@ -94,7 +95,7 @@ export default class SelectSearch{
     
     #getModal(){
         return `
-            <div type="text" class="select-search-placeholder ${this.#options.custom_class.placeholder}">${this.#getOption(this.getValue()).html}</div>
+            <div type="text" class="select-search-placeholder ${this.#options.custom_class.placeholder}"></div>
             <div class="select-search-modal" style="display: none;">
                 <input type="text" class="select-search-input ${this.#options.custom_class.search_input}" placeholder="${this.#options.lang.search}...">
                 <div class="select-search-list"></div>
