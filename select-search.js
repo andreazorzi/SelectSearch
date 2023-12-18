@@ -19,6 +19,7 @@ export default class SelectSearch{
         lang: default_lang,
         min_length: 0,
         list_limit: -1,
+        display_empty: false,
         custom_class: {
             placeholder: "",
             search_input: "",
@@ -164,7 +165,7 @@ export default class SelectSearch{
             for(let option of this.#getOptionList()){
                 let item = this.#getOption(option.value);
                 
-                if(item.value == ""){
+                if(item.value == "" && !this.#options.display_empty){
                     continue;
                 }
                 

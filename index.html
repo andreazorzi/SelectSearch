@@ -105,6 +105,7 @@
             import SelectSearch from './select-search.js';
             
             window.select_search = new SelectSearch("#test", {
+                display_empty: true,
                 render(element){
                     return "<b>" + element.getAttribute("data-icon") + "</b> " + element.textContent
                 },
