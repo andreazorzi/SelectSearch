@@ -63,7 +63,7 @@ export default class SelectSearch{
         this.#updateModalWidth();
         
         // Add event listeners
-        this.#container.querySelector(".select-search-placeholder").addEventListener("click", this.open.bind(this));
+        this.#container.querySelector(".select-search-placeholder").addEventListener("click", this.toggle_open.bind(this));
         
         this.#container.querySelector(".select-search-input").addEventListener("keyup", this.#filter.bind(this));
         
@@ -236,6 +236,14 @@ export default class SelectSearch{
         }
         
         return value;
+    }
+    
+    toggle_open(){
+        this.is_open() ? this.close() : this.open();
+    }
+    
+    is_open(){
+        return this.#container.querySelector(".select-search-modal").style.display == "block";
     }
     
     open(){
