@@ -5,7 +5,7 @@
  * Author: Andrea Zorzi <info@zorziandrea.com>
  * License: MIT
  * 
- * Version: 1.0.6
+ * Version: 1.2.3
  */
 
 import default_lang from "./locale/it.js";
@@ -20,6 +20,7 @@ export default class SelectSearch{
         min_length: 0,
         list_limit: -1,
         display_empty: false,
+        always_display_empty: false,
         custom_class: {
             placeholder: "",
             search_input: "",
@@ -169,7 +170,7 @@ export default class SelectSearch{
                     continue;
                 }
                 
-                if(item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)){
+                if((item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)) || (this.#options.always_display_empty && item.value == "")){
                     this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `
                         <div class="select-search-item ${this.#options.custom_class.list_item} ${this.#checkSelected(item.value) ? "selected" : ""}" data-value="${item.value}">
                             ${item.html}
