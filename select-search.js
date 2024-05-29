@@ -22,9 +22,9 @@ export default class SelectSearch{
         display_empty: false,
         always_display_empty: false,
         custom_class: {
-            placeholder: "",
-            search_input: "",
-            list_item: ""
+            placeholder: "select-search-placeholder",
+            search_input: "select-search-input",
+            list_item: "select-search-item"
         },
         render: (element) => {
             return element.textContent
@@ -108,9 +108,9 @@ export default class SelectSearch{
     
     #getModal(){
         return `
-            <div type="text" class="select-search-placeholder ${this.#options.custom_class.placeholder}"></div>
+            <div type="text" class="${this.#options.custom_class.placeholder}"></div>
             <div class="select-search-modal" style="display: none;">
-                <input type="text" class="select-search-input ${this.#options.custom_class.search_input}" placeholder="${this.#options.lang.search}...">
+                <input type="text" class="${this.#options.custom_class.search_input}" placeholder="${this.#options.lang.search}...">
                 <div class="select-search-list"></div>
             </div>
         `;
@@ -174,7 +174,7 @@ export default class SelectSearch{
                 
                 if((item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)) || (this.#options.always_display_empty && item.value == "")){
                     this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", `
-                        <div class="select-search-item ${this.#options.custom_class.list_item} ${this.#checkSelected(item.value) ? "selected" : ""}" data-value="${item.value}">
+                        <div class="${this.#options.custom_class.list_item} ${this.#checkSelected(item.value) ? "selected" : ""}" data-value="${item.value}">
                             ${item.html}
                         </div>
                     `);
