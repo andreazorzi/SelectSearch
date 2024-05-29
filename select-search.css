@@ -7,7 +7,7 @@
         outline: none;
     }
         
-    & .select-search-placeholder{
+    & .select-search-placeholder-style{
         cursor: pointer;
         border: 1px solid lightgrey;
         width: 100%;
@@ -35,7 +35,7 @@
         position: absolute;
         z-index: 9999;
         
-        & .select-search-input{
+        & .select-search-input-style{
             width: 100%;
             border: none;
             border-bottom: 1px solid lightgrey;
@@ -43,7 +43,7 @@
         }
         
         & .select-search-list{
-            & .select-search-item{
+            & .select-search-item-style{
                 border-bottom: 1px solid lightgrey;
                 padding: 3px 5px;
                 cursor: pointer;

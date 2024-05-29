@@ -7,6 +7,20 @@
         <link rel="stylesheet" href="select-search.css">
     </head>
     <body>
+        <select class="form-select" id="requestreprint-user_username" name="user_username">
+            <option value="">---</option>
+            <option value="dolores-damore">Dolores D'Amore</option>
+            <option value="dr-rasheed-walter">Dr. Rasheed Walter</option>
+            <option value="eliza-krajcik">Eliza Krajcik</option>
+            <option value="kendrick-lindgren">Kendrick Lindgren</option>
+            <option value="laila-schamberger-ii">Laila Schamberger II</option>
+            <option value="ms-ova-beier">Ms. Ova Beier</option>
+            <option value="nannie-klocko">Nannie Klocko</option>
+            <option value="prof-roy-bartell">Prof. Roy Bartell</option>
+            <option value="rosamond-nader">Rosamond Nader</option>
+            <option value="triston-lesch">Triston Lesch</option>
+        </select>
+        
         <select id="test">
             <option value="" data-icon="">---</option>
             <option value="1" data-icon="al">Albania</option>
@@ -120,6 +134,19 @@
                 onSelect(element, value, text){
                     // console.log(element, value, text);
                 }
+            });
+            
+            window.user = new SelectSearch('#requestreprint-user_username', {
+                display_empty: true,
+                custom_class: {
+                    placeholder: "form-select mw-100 p-2"
+                },
+                // render(element){
+                    
+                // },
+                // onSelect(item, id, element) {
+                    
+                // }
             });
         </script>
     </body>
