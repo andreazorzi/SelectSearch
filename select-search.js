@@ -195,7 +195,7 @@ export default class SelectSearch{
     #updatePlaceholder(){
         let value = [];
         
-        this.#element.querySelectorAll('option:checked').forEach((option) => {
+        this.#element.querySelectorAll('option:checked:not(:disabled)').forEach((option) => {
             value.push(this.#getOption(option.value).html);
         });
         
