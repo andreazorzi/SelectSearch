@@ -47,8 +47,6 @@ export default class SelectSearch{
         this.#options = { ...this.#options, ...options };
         this.#options.custom_class = classes;
         
-        console.log(this.#options.custom_class);
-        
         this.#init();
     }
     
