@@ -93,14 +93,16 @@ export default class SelectSearch{
             return {
                 value: "---",
                 html: "---",
-                text: "---"
+                text: "---",
+                disabled: false
             }
         }
         
         return {
             value: option.value,
             html: this.#options.render(option),
-            text: this.#options.render(option).replace(/(<([^>]+)>)/gi, "")
+            text: this.#options.render(option).replace(/(<([^>]+)>)/gi, ""),
+            disabled: option.disabled
         };
     }
     
@@ -166,7 +168,7 @@ export default class SelectSearch{
             for(let option of this.#getOptionList()){
                 let item = this.#getOption(option.value);
                 
-                if(item.value == "" && !this.#options.display_empty){
+                if((item.value == "" && !this.#options.display_empty) || item.disabled){
                     continue;
                 }
                 
