@@ -33,6 +33,7 @@ export default class SelectSearch{
             
         }
     }
+    #arrow_selection = 0;
     
     constructor(element_selector, options){
         let element = document.querySelector(element_selector);
@@ -69,6 +70,8 @@ export default class SelectSearch{
         this.#container.querySelector(".select-search-placeholder").addEventListener("click", this.toggle_open.bind(this));
         
         this.#container.querySelector(".select-search-input").addEventListener("keyup", this.#filter.bind(this));
+        
+        this.#container.querySelector(".select-search-input").addEventListener("keydown", this.#moveArrow.bind(this));
         
         this.#container.querySelector(".select-search-list").addEventListener("click", this.#checkItemClick.bind(this), false);
         
@@ -146,6 +149,7 @@ export default class SelectSearch{
                 let item = el;
                 
                 if(!this.#isMultiple()){
+                    this.#arrow_selection = parseInt(item.getAttribute("data-id"));
                     this.close();
                 }
                 
@@ -159,6 +163,32 @@ export default class SelectSearch{
                 break;
             }
         }
+    }
+    
+    #moveArrow(e){
+        if(e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 13){
+            this.#arrow_selection = 0;
+            return;
+        }
+        else if(e.keyCode == 13){
+            this.close();
+            return;
+        }
+        
+        this.#arrow_selection = e.keyCode == 38 ? this.#arrow_selection - 1 : this.#arrow_selection + 1;
+        
+        if(this.#arrow_selection < 0){
+            this.#arrow_selection = 0;
+        }
+        
+        if(this.#arrow_selection >= this.#getOptionList().length){
+            this.#arrow_selection = this.#getOptionList().length - 1;
+        }
+        
+        let arrow_value = this.#container.querySelectorAll(".select-search-list .select-search-item")[this.#arrow_selection].getAttribute("data-value");
+        this.setValue(arrow_value);
+        
+        this.#filter(null, false);
     }
     
     #filter(){
@@ -195,7 +225,7 @@ export default class SelectSearch{
                 
                 if((item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)) || (this.#options.always_display_empty && item.value == "")){
                     html += `
-                        <div class="select-search-item ${this.#options.custom_class.list_item} ${this.#checkSelected(item.value) ? "selected" : ""}" data-value="${item.value}">
+                        <div class="select-search-item ${this.#options.custom_class.list_item} ${this.#checkSelected(item.value) ? "selected" : ""}" data-value="${item.value}" data-id="${counter}">
                             ${item.html}
                         </div>
                     `;
@@ -240,9 +270,15 @@ export default class SelectSearch{
         return this.#element.querySelectorAll(`option[value="${value}"]:checked`).length > 0;
     }
     
+    #scrollToViewport(element) {
+        this.#container.querySelector(".select-search-modal").scrollTop = element.offsetTop - this.#container.querySelector(".select-search-modal").offsetTop;
+    }
+    
     setValue(value){
         let item = this.#container.querySelector(`.select-search-item[data-value="${value}"]`);
         let selected = true;
+        
+        this.#scrollToViewport(item)
         
         if(this.#isMultiple()){
             selected = item.classList.toggle("selected");
