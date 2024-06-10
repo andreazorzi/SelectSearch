@@ -9,17 +9,55 @@
     <body>
         <select class="form-select" id="requestreprint-user_username" name="user_username">
             <option value="">---</option>
-            <option value="dolores-damore">Dolores D'Amore</option>
-            <option value="dr-rasheed-walter">Dr. Rasheed Walter</option>
-            <option value="eliza-krajcik">Eliza Krajcik</option>
-            <option value="kendrick-lindgren">Kendrick Lindgren</option>
-            <option value="laila-schamberger-ii">Laila Schamberger II</option>
-            <option value="ms-ova-beier">Ms. Ova Beier</option>
-            <option value="nannie-klocko">Nannie Klocko</option>
-            <option value="prof-roy-bartell">Prof. Roy Bartell</option>
-            <option value="rosamond-nader">Rosamond Nader</option>
-            <option value="triston-lesch">Triston Lesch</option>
+            <optgroup label="Group 1">
+                <option value="dolores-damore">Dolores D'Amore</option>
+                <option value="dr-rasheed-walter">Dr. Rasheed Walter</option>
+                <option value="eliza-krajcik">Eliza Krajcik</option>
+                <option value="dolores-damore-1">Dolores D'Amore</option>
+                <option value="dr-rasheed-walter-1">Dr. Rasheed Walter</option>
+                <option value="eliza-krajcik-1">Eliza Krajcik</option>
+                <option value="dolores-damore-2">Dolores D'Amore</option>
+                <option value="dr-rasheed-walter-2">Dr. Rasheed Walter</option>
+                <option value="eliza-krajcik-2">Eliza Krajcik</option>
+                <option value="dolores-damore-3">Dolores D'Amore</option>
+                <option value="dr-rasheed-walter-3">Dr. Rasheed Walter</option>
+                <option value="eliza-krajcik-3">Eliza Krajcik</option>
+            </optgroup>
+            <optgroup label="Group 2">
+                <option value="kendrick-lindgren">Kendrick Lindgren</option>
+                <option value="laila-schamberger-ii">Laila Schamberger II</option>
+                <option value="ms-ova-beier">Ms. Ova Beier</option>
+                <option value="nannie-klocko">Nannie Klocko</option>
+                <option value="kendrick-lindgren-1">Kendrick Lindgren</option>
+                <option value="laila-schamberger-ii-1">Laila Schamberger II</option>
+                <option value="ms-ova-beier-1">Ms. Ova Beier</option>
+                <option value="nannie-klocko-1">Nannie Klocko</option>
+                <option value="kendrick-lindgren-2">Kendrick Lindgren</option>
+                <option value="laila-schamberger-ii-2">Laila Schamberger II</option>
+                <option value="ms-ova-beier-2">Ms. Ova Beier</option>
+                <option value="nannie-klocko-2">Nannie Klocko</option>
+                <option value="kendrick-lindgren-3">Kendrick Lindgren</option>
+                <option value="laila-schamberger-ii-3">Laila Schamberger II</option>
+                <option value="ms-ova-beier-3">Ms. Ova Beier</option>
+                <option value="nannie-klocko-3">Nannie Klocko</option>
+            </optgroup>
+            <optgroup label="Group 3">
+                <option value="prof-roy-bartell">Prof. Roy Bartell</option>
+                <option value="rosamond-nader">Rosamond Nader</option>
+                <option value="triston-lesch">Triston Lesch</option>
+                <option value="prof-roy-bartell-1">Prof. Roy Bartell</option>
+                <option value="rosamond-nader-1">Rosamond Nader</option>
+                <option value="triston-lesch-1">Triston Lesch</option>
+                <option value="prof-roy-bartell-2">Prof. Roy Bartell</option>
+                <option value="rosamond-nader-2">Rosamond Nader</option>
+                <option value="triston-lesch-2">Triston Lesch</option>
+                <option value="prof-roy-bartell-3">Prof. Roy Bartell</option>
+                <option value="rosamond-nader-3">Rosamond Nader</option>
+                <option value="triston-lesch-3">Triston Lesch</option>
+            </optgroup>
         </select>
+        
+        <br><br>
         
         <select id="test">
             <option value="" data-icon="">---</option>
@@ -67,6 +105,8 @@
             <option value="42" data-icon="aa">Ukraine</option>
             <option value="43" data-icon="aa">United Kingdom</option>
         </select>
+        
+        <br><br>
         
         <select id="test2" multiple>
             <!-- <option value="" data-icon="">---</option> -->
@@ -138,9 +178,9 @@
             
             window.user = new SelectSearch('#requestreprint-user_username', {
                 display_empty: true,
-                custom_class: {
-                    placeholder: "form-select mw-100 p-2"
-                },
+                // custom_class: {
+                //     placeholder: "form-select mw-100 p-2"
+                // },
                 // render(element){
                     
                 // },
