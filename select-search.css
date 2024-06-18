@@ -34,7 +34,6 @@
         overflow: auto;
         position: absolute;
         z-index: 9999;
-        position: relative;
         
         & .select-search-input-style{
             width: 100%;
