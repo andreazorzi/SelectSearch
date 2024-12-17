@@ -76,6 +76,8 @@ export default class SelectSearch{
         this.#container.querySelector(".select-search-list").addEventListener("click", this.#checkItemClick.bind(this), false);
         
         document.addEventListener("click", this.#checkOutsideClick.bind(this), false);
+        
+        this.#filter();
     }
     
     #getOptionList(){
@@ -276,7 +278,7 @@ export default class SelectSearch{
         let item = this.#container.querySelector(`.select-search-item[data-value="${value}"]`);
         let selected = true;
         
-        this.#scrollToViewport(item)
+        this.#scrollToViewport(item);
         
         if(this.#isMultiple()){
             selected = item.classList.toggle("selected");
