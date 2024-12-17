@@ -186,7 +186,7 @@ export default class SelectSearch{
         }
         
         let arrow_value = this.#container.querySelectorAll(".select-search-list .select-search-item")[this.#arrow_selection].getAttribute("data-value");
-        this.setValue(arrow_value);
+        this.setValue(arrow_value, false);
         
         this.#filter(null, false);
     }
@@ -274,7 +274,7 @@ export default class SelectSearch{
         this.#container.querySelector(".select-search-modal").scrollTop = element.offsetTop - this.#container.querySelector(".select-search-modal").offsetTop;
     }
     
-    setValue(value){
+    setValue(value, clear = true){
         let item = this.#container.querySelector(`.select-search-item[data-value="${value}"]`);
         let selected = true;
         
@@ -286,7 +286,10 @@ export default class SelectSearch{
         
         this.#element.querySelector(`option[value="${value}"]`).selected = selected;
         this.#updatePlaceholder();
-        this.#setQuery("");
+        
+        if(clear){
+            this.#setQuery("");
+        }
                 
         this.#options.onSelect(item, item.getAttribute("data-value"), item.innerHTML.trim());
     }
