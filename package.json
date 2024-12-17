@@ -1,6 +1,6 @@
 {
   "name": "@andreazorzi/selectsearch",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Lightweight plugin to easily filter and search across a select's options.",
   "main": "select-search.js",
   "scripts": {
