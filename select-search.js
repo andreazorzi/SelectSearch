@@ -155,8 +155,6 @@ export default class SelectSearch{
                 
                 this.setValue(item.getAttribute("data-value"));
                 
-                this.#options.onSelect(item, item.getAttribute("data-value"), item.innerHTML.trim());
-                
                 break;
             }
             else if(el.tagName == "HTML"){
@@ -287,6 +285,8 @@ export default class SelectSearch{
         this.#element.querySelector(`option[value="${value}"]`).selected = selected;
         this.#updatePlaceholder();
         this.#setQuery("");
+                
+        this.#options.onSelect(item, item.getAttribute("data-value"), item.innerHTML.trim());
     }
     
     getValue(){
