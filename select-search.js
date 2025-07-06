@@ -255,7 +255,7 @@ export default class SelectSearch{
             value.push(this.#getOption(option.value).html);
         });
         
-        this.#container.querySelector(".select-search-placeholder").innerHTML = value.length > 0 ? '<span style=" margin-right: 6px;">'+value.join(`,</span><span style=" margin-right: 6px;">`)+'</span>' : this.#getDefaultValue();
+        this.#container.querySelector(".select-search-placeholder").innerHTML = value.length > 0 ? '<div style=" margin-right: 6px; display: inline-block;">'+value.join(`,</div><div style=" margin-right: 6px; display: inline-block;">`)+'</div>' : this.#getDefaultValue();
     }
     
     #isMultiple(){
