@@ -274,7 +274,7 @@ export default class SelectSearch{
         this.#container.querySelector(".select-search-modal").scrollTop = element.offsetTop - this.#container.querySelector(".select-search-modal").offsetTop;
     }
     
-    setValue(value, clear = true){
+    setValue(value, clear = true, stop_propagation = false){
         let item = this.#container.querySelector(`.select-search-item[data-value="${value}"]`);
         let selected = true;
         
@@ -290,6 +290,8 @@ export default class SelectSearch{
         if(clear){
             this.#setQuery("");
         }
+        
+        if(stop_propagation) return;
                 
         this.#options.onSelect(item, item.getAttribute("data-value"), item.innerHTML.trim());
     }
