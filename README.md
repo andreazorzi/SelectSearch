@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/@andreazorzi/selectsearch.svg)](https://www.npmjs.com/package/@andreazorzi/selectsearch)
+
 # SelectSearch
 Lightweight plugin to easily filter and search across a select's options.
 
