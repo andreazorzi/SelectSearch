@@ -21,6 +21,7 @@ export default class SelectSearch{
         list_limit: -1,
         display_empty: false,
         always_display_empty: false,
+        sort: false,
         custom_class: {
             placeholder: "select-search-placeholder-style",
             search_input: "select-search-input-style",
@@ -231,6 +232,8 @@ export default class SelectSearch{
                             <div class="select-search-optgroup-list">
                     `;
                 }
+                
+                if(this.#options.sort) options[group].sort((a, b) => a.text.localeCompare(b.text));
                 
                 for(let item of options[group]){
                     html += `
