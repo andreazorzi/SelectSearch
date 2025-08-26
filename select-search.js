@@ -197,22 +197,32 @@ export default class SelectSearch{
         let counter = 0;
         
         if(query.length >= this.#options.min_length){
-            let html = ``;
-            let current_group = null;
+            let options = {};
+            let groups = [];
+            
             for(let option of this.#getOptionList()){
                 let item = this.#getOption(option.value);
-                
-                let group = option.parentNode.tagName.toLowerCase() == "optgroup" ? option.parentNode.getAttribute("label") : null;
+                let group = option.parentNode.tagName.toLowerCase() == "optgroup" ? option.parentNode.getAttribute("label") : "";
                 
                 if((item.value == "" && !this.#options.display_empty) || item.disabled){
                     continue;
                 }
                 
-                if(group != current_group){
-                    if(current_group != null){
-                        html += "</div></div>";
-                    }
+                if((item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)) || (this.#options.always_display_empty && item.value == "")){
+                    if(options[group] == undefined) options[group] = [];
                     
+                    options[group].push(item);
+                    
+                    if(groups.indexOf(group) == -1) groups.push(group);
+                    
+                    counter++;
+                }
+            }
+            
+            let html = ``;
+            
+            for(let group of groups){
+                if(group != ""){
                     html += `
                         <div>
                             <div class="select-search-optgroup">
@@ -220,21 +230,22 @@ export default class SelectSearch{
                             </div>
                             <div class="select-search-optgroup-list">
                     `;
-                    
-                    current_group = group;
                 }
                 
-                if((item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)) || (this.#options.always_display_empty && item.value == "")){
+                for(let item of options[group]){
                     html += `
                         <div class="select-search-item ${this.#options.custom_class.list_item} ${this.#checkSelected(item.value) ? "selected" : ""}" data-value="${item.value}" data-id="${counter}">
                             ${item.html}
                         </div>
                     `;
-                    counter++;
                 }
-            }
-            if(current_group != null){
-                html += "</div>";
+                
+                if(group != ""){
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
             }
             
             this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", html);
