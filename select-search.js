@@ -210,14 +210,15 @@ export default class SelectSearch{
                 
                 if(group != current_group){
                     if(current_group != null){
-                        html += "</div>";
+                        html += "</div></div>";
                     }
                     
                     html += `
-                        <div class="select-search-optgroup">
-                            ${group}
-                        </div>
-                        <div class="select-search-optgroup-list">
+                        <div>
+                            <div class="select-search-optgroup">
+                                ${group}
+                            </div>
+                            <div class="select-search-optgroup-list">
                     `;
                     
                     current_group = group;
