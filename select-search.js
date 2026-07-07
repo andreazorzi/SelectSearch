@@ -205,10 +205,7 @@ export default class SelectSearch{
                 let item = this.#getOption(option.value);
                 let group = option.parentNode.tagName.toLowerCase() == "optgroup" ? option.parentNode.getAttribute("label") : "";
                 
-                if(this.#filter_values.length > 0 && this.#filter_values.indexOf(item.value) == -1){
-                    console.log(this.#filter_values, item.value, this.#filter_values.indexOf(item.value));
-                    continue
-                };
+                if(this.#filter_values.length > 0 && this.#filter_values.indexOf(item.value) == -1) continue;
                 
                 if((item.value == "" && !this.#options.display_empty) || item.disabled) continue;
                 
