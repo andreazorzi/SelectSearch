@@ -14,7 +14,7 @@ window.default_lang = default_lang;
 export default class SelectSearch{
     #container = null;
     #element = null;
-    #list = {};
+    #filter_values = {};
     #options = {
         lang: default_lang,
         min_length: 0,
@@ -189,7 +189,7 @@ export default class SelectSearch{
         let arrow_value = this.#container.querySelectorAll(".select-search-list .select-search-item")[this.#arrow_selection].getAttribute("data-value");
         this.setValue(arrow_value, false);
         
-        this.#filter(null, false);
+        this.#filter();
     }
     
     #filter(){
@@ -205,9 +205,9 @@ export default class SelectSearch{
                 let item = this.#getOption(option.value);
                 let group = option.parentNode.tagName.toLowerCase() == "optgroup" ? option.parentNode.getAttribute("label") : "";
                 
-                if((item.value == "" && !this.#options.display_empty) || item.disabled){
-                    continue;
-                }
+                if(this.#filter_values.length > 0 && this.#filter_values.indexOf(item.value) == -1) continue;
+                
+                if((item.value == "" && !this.#options.display_empty) || item.disabled) continue;
                 
                 if((item.text.toLowerCase().includes(query.toLowerCase()) && (counter < this.#options.list_limit || this.#options.list_limit == -1)) || (this.#options.always_display_empty && item.value == "")){
                     if(options[group] == undefined) options[group] = [];
@@ -354,5 +354,19 @@ export default class SelectSearch{
         }
         
         this.setValue(value);
+    }
+    
+    filterValues(values = []){
+        if(typeof values != "object"){
+            console.warn("Values must be an array");
+            return;
+        }
+        
+        if(this.getValue() != null && values.indexOf(this.getValue()) == -1){
+            this.setValue("");
+        }
+        
+        this.#filter_values = values;
+        this.#filter();
     }
 }
