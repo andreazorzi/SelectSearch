@@ -290,6 +290,15 @@ export default class SelectSearch{
     }
     
     setValue(value, clear = true, stop_propagation = false){
+        if(value == null){
+            this.#element.querySelectorAll('option:checked').forEach((option) => {
+                option.selected = false;
+            });
+            
+            this.#updatePlaceholder();
+            return;
+        }
+        
         let item = this.#container.querySelector(`.select-search-item[data-value="${value}"]`);
         let selected = true;
         
@@ -362,8 +371,8 @@ export default class SelectSearch{
             return;
         }
         
-        if(this.getValue() != null && values.indexOf(this.getValue()) == -1){
-            this.setValue("");
+        if((this.getValue() != null && this.getValue() != "") && values.indexOf(this.getValue()) == -1){
+            this.setValue(null);
         }
         
         this.#filter_values = values;
