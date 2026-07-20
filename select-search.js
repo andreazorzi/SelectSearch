@@ -23,6 +23,7 @@ export default class SelectSearch{
         always_display_empty: false,
         sort: false,
         custom_class: {
+            container: "",
             placeholder: "select-search-placeholder-style",
             search_input: "select-search-input-style",
             list_item: "select-search-item-style"
@@ -55,7 +56,7 @@ export default class SelectSearch{
     #init(){
         // Wrap element
         this.#container = document.createElement("div");
-        this.#container.classList.add("select-search");
+        this.#container.classList.add("select-search "+this.#options.custom_class.container);
         this.#element.parentNode.insertBefore(this.#container, this.#element);
         this.#container.appendChild(this.#element);
         
