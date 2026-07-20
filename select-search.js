@@ -56,7 +56,9 @@ export default class SelectSearch{
     #init(){
         // Wrap element
         this.#container = document.createElement("div");
-        this.#container.classList.add("select-search "+this.#options.custom_class.container);
+        let container_class = ("select-search "+this.#options.custom_class.container).split(" ").filter(Boolean);
+        console.log(this.#container.classList, container_class);
+        this.#container.classList.add(...container_class);
         this.#element.parentNode.insertBefore(this.#container, this.#element);
         this.#container.appendChild(this.#element);
         
