@@ -21,6 +21,7 @@ export default class SelectSearch{
         list_limit: -1,
         display_empty: false,
         always_display_empty: false,
+        empty_option: '',
         sort: false,
         custom_class: {
             container: "",
@@ -57,7 +58,6 @@ export default class SelectSearch{
         // Wrap element
         this.#container = document.createElement("div");
         let container_class = ("select-search "+this.#options.custom_class.container).split(" ").filter(Boolean);
-        console.log(this.#container.classList, container_class);
         this.#container.classList.add(...container_class);
         this.#element.parentNode.insertBefore(this.#container, this.#element);
         this.#container.appendChild(this.#element);
@@ -252,6 +252,10 @@ export default class SelectSearch{
                         </div>
                     `;
                 }
+            }
+            
+            if(counter == 0){
+                html += this.#options.empty_option;
             }
             
             this.#container.querySelector(".select-search-list").insertAdjacentHTML("beforeend", html);
