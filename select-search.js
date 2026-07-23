@@ -195,6 +195,11 @@ export default class SelectSearch{
         this.#filter();
     }
     
+    #clearFilter(){
+        this.#setQuery("");
+        this.#filter();
+    }
+    
     #filter(){
         let query = this.#getQuery();
         this.#container.querySelector(".select-search-list").innerHTML = "";
@@ -293,6 +298,8 @@ export default class SelectSearch{
     }
     
     #scrollToViewport(element) {
+        if(!element) return;
+        
         this.#container.querySelector(".select-search-modal").scrollTop = element.offsetTop - this.#container.querySelector(".select-search-modal").offsetTop;
     }
     
@@ -305,6 +312,8 @@ export default class SelectSearch{
             this.#updatePlaceholder();
             return;
         }
+        
+        this.#clearFilter();
         
         let item = this.#container.querySelector(`.select-search-item[data-value="${value}"]`);
         let selected = true;

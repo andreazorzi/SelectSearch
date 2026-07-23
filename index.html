@@ -158,24 +158,6 @@
         <script type="module">
             import SelectSearch from './select-search.js';
             
-            window.select_search = new SelectSearch("#test", {
-                display_empty: true,
-                render(element){
-                    return "<b>" + element.getAttribute("data-icon") + "</b> " + element.textContent
-                },
-                onSelect(element, value, text){
-                    // console.log(element, value, text);
-                }
-            });
-            window.select_search2 = new SelectSearch("#test2", {
-                render(element){
-                    return "<b>" + element.getAttribute("data-icon") + "</b> " + element.textContent
-                },
-                onSelect(element, value, text){
-                    // console.log(element, value, text);
-                }
-            });
-            
             window.user = new SelectSearch('#requestreprint-user_username', {
                 display_empty: true,
                 sort: true,
@@ -195,6 +177,26 @@
                     
                 // }
             });
+            
+            window.select_search = new SelectSearch("#test", {
+                display_empty: true,
+                render(element){
+                    return "<b>" + element.getAttribute("data-icon") + "</b> " + element.textContent
+                },
+                onSelect(element, value, text){
+                    // console.log(element, value, text);
+                }
+            });
+            
+            window.select_search2 = new SelectSearch("#test2", {
+                render(element){
+                    return "<b>" + element.getAttribute("data-icon") + "</b> " + element.textContent
+                },
+                onSelect(element, value, text){
+                    // console.log(element, value, text);
+                }
+            });
+            
         </script>
     </body>
 </html>
